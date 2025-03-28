@@ -1,0 +1,42 @@
+{{#if enums.length}}
+import type {
+  {{#each enums}}
+  {{declaredName}} as {{hashedName}},
+  {{/each}}
+} from "../enums";
+{{/if}}
+
+{{#each table.columns}}{{#if importedType}}import type { {{importedType.import}} as {{importedType.alias}} } from "{{importedType.from}}";
+{{/if}}{{/each}}
+
+export type RecordT = {
+{{#each table.columns}}
+{{#each table.comments}}  /** {{this}} */
+{{/each}}
+  {{name}}: {{declaredType}}{{#if isNullable}} | null{{/if}};
+{{/each}}
+}
+
+{{#if table.isTable}}
+export type InsertT = {
+{{#each table.columns}}
+{{#each comments}}  /** {{this}} */
+{{/each}}
+{{#unless isGenerated}}  {{name}}{{#if isOptionalOnInsert}}?{{/if}}: {{declaredType}}{{#if isNullable}} | null{{/if}};
+{{/unless}}
+{{/each}}
+}
+
+export type UpdateT = {
+{{#each table.columns}}
+{{#each comments}}  /** {{this}} */
+{{/each}}
+{{#unless isGenerated}}  {{name}}{{#if isOptionalOnUpdate}}?{{/if}}: {{declaredType}}{{#if isNullable}} | null{{/if}};
+{{/unless}}
+{{/each}}
+}
+{{/if}}
+
+export type QueryT = import("knextra").QueryBuilder<
+  "{{table.moduleName}}"
+>;

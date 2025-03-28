@@ -1,0 +1,6 @@
+/pkgs/@knextra/*/pkg/
+/pkgs/@knextra/*/var/
+/pkgs/knextra/pkg/
+/pkgs/knextra/var/
+/var/
+/.tmuxinator*

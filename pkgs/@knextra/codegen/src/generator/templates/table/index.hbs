@@ -1,0 +1,31 @@
+import knextra from "knextra";
+
+import defaultConnection from "{{importPathmap.libDir}}/connect";
+
+import type { QueryT } from "./types";
+
+export * from "./types";
+
+type ExtraMethod = (
+  this: QueryT,
+  ...a: Array<never>
+) => QueryT | ExtraMethod;
+
+export const tableName = "{{table.name}}";
+
+export default <
+  ExtraT = Record<string, ExtraMethod>
+>(
+  extra?: ExtraT,
+  connection = defaultConnection,
+) => {
+  return knextra<
+    "{{table.moduleName}}",
+    {{#if table.primaryKey}}"{{table.primaryKey}}"{{else}}object{{/if}},
+    ExtraT
+  >({
+    connection,
+    tableName: "{{table.fullName}}",{{#if table.primaryKey}}
+    primaryKey: "{{table.primaryKey}}",{{/if}}
+  }, extra)
+}

@@ -1,0 +1,29 @@
+{
+  "extends": ["@libconfig/biome"],
+  "files": {
+    "include": [
+      "./*.json",
+      "./pkgs/@knextra/*/src/**",
+      "./pkgs/@knextra/*/*.json",
+      "./pkgs/knextra/src/**",
+      "./pkgs/knextra/*.json"
+    ]
+  },
+  "overrides": [
+    {
+      "include": [
+        "pkgs/@knextra/codegen/src/cli.ts",
+        "pkgs/@knextra/stdlib/src/*.ts",
+        "pkgs/@knextra/migrate/src/cli.ts",
+        "pkgs/@knextra/migrate/src/migrations/*.ts"
+      ],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    }
+  ]
+}

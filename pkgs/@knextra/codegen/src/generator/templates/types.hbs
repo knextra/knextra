@@ -1,0 +1,20 @@
+import "./knex.d";
+export * from "./enums";
+
+{{#each tables}}
+export type {
+  RecordT as {{recordName}},
+  InsertT as {{insertName}},
+  UpdateT as {{updateName}},
+  QueryT as {{queryBuilder}},
+} from "./{{name}}/types";
+
+{{/each}}
+
+{{#each views}}
+export type {
+  RecordT as {{recordName}},
+  QueryT as {{queryBuilder}},
+} from "./{{name}}/types";
+
+{{/each}}

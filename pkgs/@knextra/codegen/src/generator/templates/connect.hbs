@@ -1,0 +1,9 @@
+import { connect } from "{{importPathmap.connectFile}}";
+
+export const connection = connect()
+
+export const disconnect = async () => {
+  return connection?.destroy();
+}
+
+export default connection;

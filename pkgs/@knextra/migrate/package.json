@@ -1,0 +1,39 @@
+{
+  "type": "module",
+  "name": "@knextra/migrate",
+  "version": "0.0.0-alpha.0",
+  "author": "Slee Woo",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": ["pkg/*"],
+  "bin": {
+    "db-migrate": "pkg/cli.js"
+  },
+  "scripts": {
+    "build": "esbuilder src/cli.ts -o pkg -l .hbs=text -s @/scripts/",
+    "postbuild": "chmod +x pkg/cli.js"
+  },
+  "dependencies": {
+    "@knextra/codegen": "workspace:^",
+    "@knextra/stdlib": "workspace:^",
+    "ansi-escapes": "^7.0.0",
+    "crc": "^4.3.2",
+    "date-fns": "^4.1.0",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.0",
+    "handlebars": "^4.7.8",
+    "kleur": "^4.1.5",
+    "knex-schema-inspector": "^3.1.0",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/prompts": "^2.4.9",
+    "knex": "^3.1.0"
+  },
+  "peerDependencies": {
+    "knextra": "workspace:^"
+  }
+}

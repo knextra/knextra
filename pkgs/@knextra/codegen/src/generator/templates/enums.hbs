@@ -1,0 +1,15 @@
+{{#if enums.length}}
+{{#each enums}}
+
+export enum {{declaredName}}{{enumSuffix}} {
+{{#each enumValues}}  {{key}} = {{val}},
+{{/each}}
+};
+
+export type {{declaredName}} =
+{{#each values}}  | {{this}}
+{{/each}};
+{{/each}};
+{{else}}
+export {};
+{{/if}}

@@ -1,0 +1,29 @@
+import knex, { type Knex } from "knex";
+
+// use process.env.KEY rather than destructuring process.env
+// ❌ bad:  export const { DATABASE_CLIENT: client } = process.env
+// ✅ good: export const client = process.env.DATABASE_CLIENT
+
+export const client = process.env.DATABASE_CLIENT as string;
+
+export const connection = {
+  host: process.env.DATABASE_SERVER as string,
+  port: Number(process.env.DATABASE_PORT),
+  user: process.env.DATABASE_USER as string,
+  password: process.env.DATABASE_PASSWORD as string,
+  database: process.env.DATABASE_NAME as string,
+};
+
+export const config: Knex.Config = {
+  client,
+  connection,
+};
+
+export const connect = (
+  connectionSettings: typeof connection = connection,
+): Knex => {
+  return knex({
+    client,
+    connection: connectionSettings,
+  });
+};
