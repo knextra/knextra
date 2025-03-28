@@ -1,14 +1,16 @@
 {
   "type": "module",
   "name": "knextra",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.0",
   "description": "Thin wrapper around Knex",
   "author": "Slee Woo",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "files": ["pkg/*"],
+  "files": [
+    "pkg/*"
+  ],
   "exports": {
     ".": {
       "types": "./pkg/index.d.ts",

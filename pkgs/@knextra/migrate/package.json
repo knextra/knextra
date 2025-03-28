@@ -1,13 +1,15 @@
 {
   "type": "module",
   "name": "@knextra/migrate",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.0",
   "author": "Slee Woo",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "files": ["pkg/*"],
+  "files": [
+    "pkg/*"
+  ],
   "bin": {
     "db-migrate": "pkg/cli.js"
   },
